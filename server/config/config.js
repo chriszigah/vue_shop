@@ -12,7 +12,9 @@ export default {
   SECRET_KEY: process.env.SECRET_KEY,
   SECRET_SESSION_NAME: process.env.SECRET_SESSION_NAME,
   JWT_SECRET: process.env.JWT_SECRET,
-  PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID || "sb",
-  accessKeyId: process.env.accessKeyId || "accessKeyId",
-  secretAccessKey: process.env.secretAccessKey || "secretAccessKey"
+  PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
+  accessKeyId: process.env.accessKeyId,
+  secretAccessKey: process.env.secretAccessKey,
+  AWSSecretKey: process.env.AWSSecretKey,
+  AWSAccessKeyId: process.env.AWSAccessKeyId
 };
