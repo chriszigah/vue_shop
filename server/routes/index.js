@@ -3,6 +3,7 @@ const router = express.Router();
 
 //Routes
 const usersRoutes = require("../routes/users");
+const productsRoutes = require("../routes/product");
 
 import { ensureAuthenticated, forwardAuthenticated } from "../middleware/auth";
 
@@ -33,5 +34,6 @@ router.get("/unsuccess_login", (req, res, next) => {
 });
 
 router.use("/user", usersRoutes);
+router.use("/product", productsRoutes);
 
 module.exports = router;
