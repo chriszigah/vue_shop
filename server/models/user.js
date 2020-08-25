@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-
-const SALT_I = 10;
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = mongoose.Schema(
   {
