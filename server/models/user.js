@@ -25,6 +25,10 @@ const userSchema = mongoose.Schema(
     token: {
       type: String,
       default: ""
+    },
+    address: {
+      type: Schema.Types.ObjectId,
+      ref: "Address"
     }
   },
   { timestamps: true }
