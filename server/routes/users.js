@@ -2,8 +2,6 @@ import express from "express";
 let router = express.Router();
 
 import { body } from "express-validator";
-//const checkAuth = require("../middleware/checkAuth");
-//const isAuth = require("../middleware/isAuth");
 import { ensureAuthenticated, forwardAuthenticated } from "../middleware/auth";
 
 import userController from "../controllers/user";
