@@ -2,17 +2,15 @@ import { Product } from "../models/product";
 
 import { validationResult } from "express-validator";
 
-// @route   POST /product/add
-// @desc    Create a new product
-// @access  Private
 exports.addProduct = async (req, res, next) => {
   try {
-    const { title, description, productImage, price, stockQuantity } = req.body;
-
+    const imageUrl = req.file.location;
+    const { title, description, price, stockQuantity } = req.body;
+    console.log(productImage);
     const product = new Product({
       title,
       description,
-      productImage,
+      imageUrl,
       price,
       stockQuantity
     });

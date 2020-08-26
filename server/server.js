@@ -12,6 +12,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 //import sendEmail from "./config/email";
 import config from "./config/config";
+import upload from "./middleware/uploadImage";
 const {
   MONGO_URI,
   SECRET_SESSION_NAME,
@@ -35,6 +36,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.enable("trust proxy");
+app.use(upload.single("imageUrl"));
 
 // Session
 //MongoStore({ session });
@@ -76,7 +78,6 @@ const accessLogStream = fs.createWriteStream(
   }
 );
 app.use(morgan("dev"));
-app.use(morgan("combined"));
 app.use(morgan("combined", { stream: accessLogStream }));
 morgan.token("sessionid", function (req, res, param) {
   return req.sessionID ? req.sessionID : "NO SESSION ";
