@@ -2,8 +2,10 @@ import express from "express";
 const router = express.Router();
 
 //Routes
-const usersRoutes = require("../routes/users");
-const productsRoutes = require("../routes/product");
+import usersRoutes from "../routes/users";
+import productsRoutes from "../routes/product";
+import categoryRoutes from "../routes/category";
+import ownerRoutes from "../routes/owner";
 
 import { ensureAuthenticated, forwardAuthenticated } from "../middleware/auth";
 
@@ -35,5 +37,7 @@ router.get("/unsuccess_login", (req, res, next) => {
 
 router.use("/user", usersRoutes);
 router.use("/product", productsRoutes);
+router.use("/category", categoryRoutes);
+router.use("/owner", ownerRoutes);
 
 module.exports = router;

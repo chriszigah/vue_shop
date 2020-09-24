@@ -13,12 +13,13 @@ import helmet from "helmet";
 //import sendEmail from "./config/email";
 import config from "./config/config";
 import upload from "./middleware/uploadImage";
+
 const {
   MONGO_URI,
   SECRET_SESSION_NAME,
   SESSION_COOKIE_NAME,
   COOKIE_EXPIRATION_MS,
-  NODE_ENV
+  NODE_ENV,
 } = config;
 
 // Passport Config
@@ -36,8 +37,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.enable("trust proxy");
-app.use(upload.single("imageUrl"));
-
+app.use(upload.single("ImageUrl"));
 // Session
 //MongoStore({ session });
 app.use(
@@ -50,16 +50,16 @@ app.use(
     cookie: {
       secure: NODE_ENV === "production",
       expires: Date.now() + parseInt(COOKIE_EXPIRATION_MS, 10),
-      maxAge: parseInt(COOKIE_EXPIRATION_MS, 10)
-    }
+      maxAge: parseInt(COOKIE_EXPIRATION_MS, 10),
+    },
   })
 );
 
 // CORS
 const corsConfig = {
-  origin: "http://localhost:3000",
+  origin: "http://localhost:2400",
   methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
-  credentials: true
+  credentials: true,
 };
 
 app.use(cors(corsConfig));
@@ -74,7 +74,7 @@ app.use(helmet());
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, "access.log"),
   {
-    flags: "a"
+    flags: "a",
   }
 );
 app.use(morgan("dev"));
@@ -108,12 +108,20 @@ const message = {
   cc: "",
   subject: "Testing emailjs",
   attachment: [
-    { data: "<html>i <i>hope</i> this works!</html>", alternative: true }
+    { data: "<html>i <i>hope</i> this works!</html>", alternative: true },
     //{ path: "path/to/file.zip", type: "application/zip", name: "renamed.zip" }
-  ]
+  ],
 };
 
-//sendEmail(message);
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+
+  // render the error page
+  res.status(500).json({
+    error: err,
+  });
+});
 
 const PORT = process.env.PORT;
 

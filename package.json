@@ -29,6 +29,7 @@
     "multer-s3": "^2.9.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "rand-token": "^1.0.1",
     "t": "^0.5.1",
     "uuidv4": "^6.2.3"
   },
